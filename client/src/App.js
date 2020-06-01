@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css'
 import { v4 as uuidv4 } from 'uuid'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import HomePage from './components/home'
+import HomePage from './components/home-page'
 import TopScores from './components/top-scores'
 import Game from './components/game'
 import Navbar from './components/navbar'
@@ -60,7 +60,7 @@ class App extends React.Component {
     fetch(`https://opentdb.com/api.php?amount=${amount}&category=${categories}&type=multiple`, params)
       .then(response => response.json())
       .then(response => {
-        const cardsTrivia = response.results.map((card, index) => {
+        const cardsTrivia = response.results.map(card => {
           const answer = card.correct_answer
           const choices = [...card.incorrect_answers, answer]
           return {
@@ -70,7 +70,7 @@ class App extends React.Component {
             choices: choices.sort(() => Math.random() - 0.5),
           }
         })
-        console.log(cardsTrivia)
+        //console.log(cardsTrivia)
         this.setState({
           cards: cardsTrivia,
           user: user,
@@ -88,12 +88,9 @@ class App extends React.Component {
       <div className='App'>
         <Router>
           <Navbar />
-
           <Switch>
-            <Route exact path='/'>
-              <HomePage />
-            </Route>
-            <Route exact path='/game'>
+            <Route exact path='/' component={HomePage}></Route>
+            <Route exact path='/game' component={Game}>
               <Game
                 cards={cards}
                 categories={categories}
@@ -102,7 +99,7 @@ class App extends React.Component {
                 onDisplayCards={this.handleDisplayCards}
               />
             </Route>
-            <Route path='/topscores'>
+            <Route path='/topscores' component={TopScores}>
               <TopScores games={games} />
             </Route>
           </Switch>

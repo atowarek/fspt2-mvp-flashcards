@@ -4,23 +4,23 @@ import { NavLink } from 'react-router-dom'
 class Navbar extends React.Component {
   render() {
     return (
-      <ul>
-        <li>
+      <div className='nav'>
+        <div>
           <NavLink exact activeClassName='active-page' to='/'>
             Homepage
           </NavLink>
-        </li>
-        <li>
+        </div>
+        <div>
           <NavLink exact activeClassName='active-page' to='/game'>
             Play
           </NavLink>
-        </li>
-        <li>
+        </div>
+        <div>
           <NavLink activeClassName='active-page' to='/topscores'>
             Top Scores
           </NavLink>
-        </li>
-      </ul>
+        </div>
+      </div>
     )
   }
 }

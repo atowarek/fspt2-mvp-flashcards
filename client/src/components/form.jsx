@@ -26,7 +26,7 @@ class Form extends React.Component {
     onDisplayCards(categories, user, amount)
 
     this.setState({
-      amount: 0,
+      amount: '',
       user: '',
       categories: [],
     })
@@ -59,7 +59,7 @@ class Form extends React.Component {
         <label>Number of questions:</label>
         <input type='number' name='amount' value={amount} onChange={this.handleChange} min='1' max='50' />
         <div>
-          <button>Let's play</button>
+          <button>Go!</button>
         </div>
       </form>
     )
