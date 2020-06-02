@@ -1,5 +1,4 @@
 import React from 'react'
-import { CardSubtitle } from 'reactstrap'
 
 class Flashcard extends React.Component {
   constructor(props) {
@@ -30,21 +29,24 @@ class Flashcard extends React.Component {
   // const currentQuestion = question[questionCounter]
 
   render() {
-    const { cards } = this.props
+    const { id, question, choices, answer } = this.props
 
     return (
       <div>
-        {cards.map(card => {
+        <div>{question}</div>
+        <li>{choices + ' '}</li>
+        <hr />
+
+        {/* {cards.map(card => {
           //const currentQuestion = cards[Math.floor(Math.random() * cards.length)]
           return (
             <div key={card.id}>
-              <span>{card.question}</span>
-              <ul>
-                <li>{card.choices}</li>
-              </ul>
+              <div>{card.question}</div>
+              <li>{card.choices}</li>
+              <hr />
             </div>
           )
-        })}
+        })} */}
       </div>
     )
   }

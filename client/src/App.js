@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
 import { v4 as uuidv4 } from 'uuid'
+import he from 'he'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import HomePage from './components/home-page'
 import TopScores from './components/top-scores'
@@ -61,16 +62,16 @@ class App extends React.Component {
       .then(response => response.json())
       .then(response => {
         const cardsTrivia = response.results.map(card => {
-          const answer = card.correct_answer
-          const choices = [...card.incorrect_answers, answer]
+          const answer = he.decode(card.correct_answer)
+          const choices = [...card.incorrect_answers.map(element => he.decode(element)), answer]
           return {
             id: uuidv4(), //?
-            question: card.question,
+            question: he.decode(card.question),
             answer: answer,
             choices: choices.sort(() => Math.random() - 0.5),
           }
         })
-        //console.log(cardsTrivia)
+        console.log(cardsTrivia)
         this.setState({
           cards: cardsTrivia,
           user: user,

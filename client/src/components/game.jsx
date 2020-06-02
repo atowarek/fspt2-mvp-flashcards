@@ -10,7 +10,7 @@ const Game = ({ cards, categories, onDisplayCards }) => {
     <div>
       <h1>Let's play</h1>
       <Form categories={categories} onDisplayCards={handleDisplayCards} />
-      {/* 
+
       {cards.map(card => {
         return (
           <Flashcard
@@ -22,8 +22,8 @@ const Game = ({ cards, categories, onDisplayCards }) => {
             onDisplayCards={handleDisplayCards}
           />
         )
-      })} */}
-      <Flashcard cards={cards} onDisplayCards={handleDisplayCards} />
+      })}
+      {/* <Flashcard cards={cards} onDisplayCards={handleDisplayCards} /> */}
     </div>
   )
 }
