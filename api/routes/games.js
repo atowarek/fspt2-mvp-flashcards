@@ -32,9 +32,9 @@ routes.post('/', (req, res) => {
     .then(results => {
       //console.log({ results })
       if (!results.error) {
-        return res.status(201).send({ message: 'Game was created' })
+        return res.status(201).send({ message: 'Succesfully created' })
       }
-      throw Error({ error: 'Cannot create game' })
+      throw Error({ error: 'Cannot create' })
     })
     .catch(err => res.status(500).send(err))
 })

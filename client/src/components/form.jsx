@@ -26,7 +26,7 @@ class Form extends React.Component {
     onDisplayCards(categories, user, amount)
 
     this.setState({
-      amount: '',
+      //amount: '',
       user: '',
       categories: [],
     })
@@ -41,12 +41,7 @@ class Form extends React.Component {
         <input name='user' value={user} onChange={this.handleChange} />
         <br />
         <label>Choose a category:</label>
-        <select
-          name='categories'
-          // value={categories}
-          // multiple={true}
-          // type='select-multiple'
-          onChange={this.handleChange}>
+        <select name='categories' onChange={this.handleChange}>
           {categories.map(category => {
             return (
               <option key={category.id} value={category.id}>

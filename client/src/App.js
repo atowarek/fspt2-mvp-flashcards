@@ -17,9 +17,12 @@ class App extends React.Component {
       games: [],
       cards: [],
       categories: [],
-      amount: '',
+      amount: 0,
       error: false,
       user: '',
+      currentQuestion: '',
+      questionIndex: 0,
+      score: 0,
     }
   }
 
@@ -31,9 +34,7 @@ class App extends React.Component {
     fetch('http://localhost:5000/api/categories')
       .then(response => response.json())
       .then(response => {
-        this.setState({
-          categories: response,
-        })
+        this.setState({ categories: response })
         console.log(response)
       })
       .catch(err => {
@@ -43,9 +44,7 @@ class App extends React.Component {
     fetch('http://localhost:5000/api/games')
       .then(response => response.json())
       .then(response => {
-        this.setState({
-          games: response,
-        })
+        this.setState({ games: response })
         console.log(response)
       })
       .catch(err => {
@@ -62,29 +61,72 @@ class App extends React.Component {
       .then(response => response.json())
       .then(response => {
         const cardsTrivia = response.results.map(card => {
-          const answer = he.decode(card.correct_answer)
-          const choices = [...card.incorrect_answers.map(element => he.decode(element)), answer]
+          const correctAnswer = he.decode(card.correct_answer)
+          const choices = [...card.incorrect_answers.map(element => he.decode(element)), correctAnswer]
           return {
-            id: uuidv4(), //?
+            id: uuidv4(),
             question: he.decode(card.question),
-            answer: answer,
+            correctAnswer,
             choices: choices.sort(() => Math.random() - 0.5),
           }
         })
         console.log(cardsTrivia)
+
         this.setState({
+          currentQuestion: cardsTrivia[0].id,
           cards: cardsTrivia,
-          user: user,
-          amount: amount,
+          user,
+          amount,
         })
       })
+
       .catch(err => {
         this.setState({ error: true })
       })
   }
 
+  handleNextQuestion = questionIndex => {
+    //if (this.state.questionIndex > this.state.amount) return
+
+    this.setState({
+      questionIndex,
+      currentQuestion: this.state.cards[this.state.questionIndex].id,
+    })
+
+    console.log(`questionIndex ${questionIndex} on App`)
+  }
+
+  handleAddScore = (score, user) => {
+    this.setState({
+      user,
+      score,
+    })
+    console.log(`Score ${score} on App`)
+  }
+
+  // handleAddScore = (score, user) => {
+  //   fetch(`http://localhost:5000/api/games`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({ score, user }),
+  //   })
+  //     .then(response => response.json())
+  //     // .then(() => {
+  //     //   this.getStudents()
+  //     // })
+  //     .then(response => {
+  //       this.setState({ games: response })
+  //     })
+  //     .catch(() => {
+  //       this.setState({ error: true })
+  //     })
+  // }
+
   render() {
-    const { games, cards, categories, user, amount } = this.state
+    const { games, cards, categories, user, amount, score, currentQuestion, questionIndex } = this.state
+
     return (
       <div className='App'>
         <Router>
@@ -93,11 +135,16 @@ class App extends React.Component {
             <Route exact path='/' component={HomePage}></Route>
             <Route exact path='/game' component={Game}>
               <Game
+                currentQuestion={currentQuestion}
+                questionIndex={questionIndex}
                 cards={cards}
                 categories={categories}
                 user={user}
+                score={score}
                 amount={amount}
                 onDisplayCards={this.handleDisplayCards}
+                addScore={this.handleAddScore}
+                getNextQuestion={this.handleNextQuestion}
               />
             </Route>
             <Route path='/topscores' component={TopScores}>
