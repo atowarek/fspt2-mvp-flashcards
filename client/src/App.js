@@ -7,6 +7,7 @@ import HomePage from './components/home-page'
 import TopScores from './components/top-scores'
 import Game from './components/game'
 import Navbar from './components/navbar'
+import About from './components/about-page'
 
 class App extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class App extends React.Component {
       cards: [],
       categories: [],
       amount: 0,
-      error: false,
+      error: false, // remember to catch!
       currentQuestion: '',
       questionIndex: 0,
       gameOver: false,
@@ -41,7 +42,7 @@ class App extends React.Component {
   }
 
   handleDisplayCards = (categories, amount) => {
-    fetch(`https://opentdb.com/api.php?amount=${amount}&category=${categories}&type=multiple`)
+    fetch(`https://opentdb.com/api.php?amount=${amount}&category=${categories}&difficulty=easy&type=multiple`)
       .then(response => response.json())
       .then(response => {
         const cardsTrivia = response.results.map(card => {
@@ -87,7 +88,8 @@ class App extends React.Component {
         <Router>
           <Navbar />
           <Switch>
-            <Route exact path='/' component={HomePage}></Route>
+            <Route exact path='/' children={HomePage}></Route>
+            <Route exact path='/about' children={About}></Route>
             <Route exact path='/game' component={Game}>
               <Game
                 currentQuestion={currentQuestion}

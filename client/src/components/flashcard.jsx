@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from 'reactstrap'
 
 class Flashcard extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class Flashcard extends React.Component {
       isAnswered: false,
       responses: 0,
       isCorrect: false,
+      isFlipped: false,
     }
   }
 
@@ -17,8 +19,8 @@ class Flashcard extends React.Component {
     event.preventDefault()
     const { addScore, correctAnswer } = this.props
     const answer = event.target.value
-
     const isCorrect = answer === correctAnswer
+
     if (isCorrect) {
       console.log(`${answer}: ${correctAnswer}`)
       this.setState({
@@ -44,28 +46,40 @@ class Flashcard extends React.Component {
     getNextQuestion(questionIndex)
   }
 
+  handleFlip = () => {
+    this.setState(state => ({
+      isFlipped: !state.isFlipped,
+    }))
+  }
+
   render() {
-    const { question, choices } = this.props
-    const { isAnswered, responses } = this.state
+    const { question, choices, correctAnswer } = this.props
+    const { isAnswered, isFlipped } = this.state
 
     return (
-      <div>
-        <div>{question}</div>
+      <div className='flashcard-container'>
+        <div className={`card ${isFlipped ? 'flip' : ''}`} onClick={this.handleFlip}>
+          {isFlipped ? <div className='back'>{correctAnswer}</div> : <div className='front'>{question}</div>}
+        </div>
         <ul>
           {choices.map(text => {
             return (
               <div key={text}>
-                <button name='answer' value={text} onClick={this.handleClick}>
+                <Button
+                  outline
+                  color='secondary'
+                  name='answer'
+                  value={text}
+                  onClick={this.handleClick}
+                  disabled={isAnswered}>
                   {text}
-                </button>
+                </Button>
               </div>
             )
           })}
         </ul>
-        <div>Responses: {responses}</div>
-        <div>Your score: {this.state.score}</div>
-        <hr />
-        {isAnswered === true && <button onClick={this.handleNextQuestion}>Next question</button>}
+        <br />
+        <div>{isAnswered === true && <button onClick={this.handleNextQuestion}>Next question</button>}</div>
       </div>
     )
   }

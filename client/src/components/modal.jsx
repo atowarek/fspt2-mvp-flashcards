@@ -13,7 +13,12 @@ const ModalEndGame = props => {
       <Button color='danger' onClick={toggle}>
         {buttonLabel}
       </Button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
+      <Modal
+        isOpen={modal}
+        modalTransition={{ timeout: 700 }}
+        backdropTransition={{ timeout: 1300 }}
+        toggle={toggle}
+        className={className}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore

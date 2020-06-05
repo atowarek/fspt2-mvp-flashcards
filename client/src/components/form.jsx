@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from 'reactstrap'
 
 class Form extends React.Component {
   constructor(props) {
@@ -27,7 +28,8 @@ class Form extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className='form-header' onSubmit={this.handleSubmit}>
+        <div className='form-group'></div>
         <label>Choose a category:</label>
         <select name='categories' onChange={this.handleChange}>
           {this.props.categories.map(category => {
@@ -38,11 +40,18 @@ class Form extends React.Component {
             )
           })}
         </select>
-        <br />
         <label>Number of questions:</label>
-        <input type='number' name='amount' value={this.state.amount} onChange={this.handleChange} min='1' max='50' />
+        <input
+          type='number'
+          name='amount'
+          value={this.state.amount}
+          onChange={this.handleChange}
+          min='1'
+          max='50'
+          width='150'
+        />
         <div>
-          <button>Go!</button>
+          <Button color='primary'>Go!</Button>
         </div>
       </form>
     )

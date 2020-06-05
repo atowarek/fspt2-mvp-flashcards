@@ -7,7 +7,6 @@ class TopScores extends React.Component {
     this.state = {
       games: [],
       error: false,
-      games: [],
     }
   }
   componentDidMount() {
@@ -27,9 +26,9 @@ class TopScores extends React.Component {
 
   render() {
     return (
-      <>
-        <h1>TopScores</h1>
-        <Table striped>
+      <div className='scores-container'>
+        <h1>Our top players!</h1>
+        <Table hover>
           <thead>
             <tr>
               <th>Top Scores</th>
@@ -40,14 +39,16 @@ class TopScores extends React.Component {
             {this.state.games.map(game => {
               return (
                 <tr key={game.gameId}>
-                  <td> {game.score}</td>
+                  <td>
+                    <b> {game.score}</b>
+                  </td>
                   <td>{game.user} </td>
                 </tr>
               )
             })}
           </tbody>
         </Table>
-      </>
+      </div>
     )
   }
 }

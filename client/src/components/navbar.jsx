@@ -11,8 +11,13 @@ class Navbar extends React.Component {
           </NavLink>
         </div>
         <div>
+          <NavLink exact activeClassName='active-page' to='/about'>
+            How it works
+          </NavLink>
+        </div>
+        <div>
           <NavLink exact activeClassName='active-page' to='/game'>
-            Play
+            <b>Play</b>
           </NavLink>
         </div>
         <div>

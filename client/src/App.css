@@ -1,10 +1,7 @@
 .App {
+  font-family: sans-serif;
   text-align: center;
-  margin: 50px auto;
-}
-
-ul {
-  list-style-type: none;
+  margin: 30px auto;
 }
 
 .active-page {
@@ -13,17 +10,64 @@ ul {
 
 .nav {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
-  /*margin: 40px auto;
-  /* border: 1px solid lightblue; */
+  margin: 50px auto;
+  border-bottom: 1px solid lightblue;
   height: 50px;
   width: 100%;
+  text-transform: uppercase;
 }
 
-/* table {
-  font-family: sans-serif;
+.card {
+  font-size: 28px;
+  min-height: 50vh;
+  width: 20%;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid lightblue;
+  background: linear-gradient(#aefff4, #335a86);
+  padding: 40px;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
+  transform-style: preserve-3d;
+  transition: 150ms;
+  transform: perspective(1000px) rotateY(var(--rotate-y, 0));
+}
+.card.flip {
+  --rotate-y: 180deg;
+}
 
+.card .front,
+.card .back {
+  backface-visibility: hidden;
+}
+
+.card .back {
+  transform: rotateY(180deg);
+}
+
+.flashcard-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 50px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  margin: 50px auto;
+  min-height: 60vh;
+  width: 40%;
+}
+.img {
+  padding: 40px;
+  border-radius: 8px;
+}
+
+.scores-container {
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -31,43 +75,26 @@ ul {
   margin: 40px auto;
   padding: 40px;
   border-radius: 8px;
-  height: auto;
-  min-height: 60vh;
-  width: 40%;
-} */
-
-/* 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  width: 60%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.table {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 30px;
+  margin: 40px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.form-header {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 30px auto;
+  border-bottom: 1px solid lightblue;
+}
+
+.form-group {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 0.5rem;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
