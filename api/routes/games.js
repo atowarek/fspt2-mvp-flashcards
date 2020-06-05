@@ -26,9 +26,9 @@ routes.get('/:gameId', (req, res) => {
 })
 
 routes.post('/', (req, res) => {
-  const { score, categoryId, user } = req.body
+  const { score, user } = req.body
 
-  db(`INSERT INTO games (score, categoryId, user) VALUES('${score}', '${categoryId}', '${user}');`)
+  db(`INSERT INTO games (score, user) VALUES('${score}', '${user}');`)
     .then(results => {
       //console.log({ results })
       if (!results.error) {

@@ -9,6 +9,7 @@ class Flashcard extends React.Component {
       currentQuestion: '',
       isAnswered: false,
       responses: 0,
+      isCorrect: false,
     }
   }
 
@@ -17,10 +18,11 @@ class Flashcard extends React.Component {
     const { addScore, correctAnswer } = this.props
     const answer = event.target.value
 
-    if (answer === correctAnswer) {
+    const isCorrect = answer === correctAnswer
+    if (isCorrect) {
       console.log(`${answer}: ${correctAnswer}`)
       this.setState({
-        score: this.state.score + 1,
+        isCorrect: true,
       })
     } else {
       console.log(`Incorrect ${answer}, correct: ${correctAnswer}`)
@@ -29,16 +31,12 @@ class Flashcard extends React.Component {
       responses: this.state.responses + 1,
       isAnswered: true,
     })
-    addScore(this.state.score)
+    addScore(isCorrect)
   }
 
   handleNextQuestion = () => {
     const { getNextQuestion } = this.props
     const { questionIndex } = this.state
-
-    // if (this.state.responses === this.props.amount) {
-    //   console.log('Gameover')
-    // } else {
 
     this.setState({
       questionIndex: this.state.questionIndex + 1,
@@ -54,10 +52,10 @@ class Flashcard extends React.Component {
       <div>
         <div>{question}</div>
         <ul>
-          {choices.map((text, id) => {
+          {choices.map(text => {
             return (
-              <div>
-                <button key={id} name='answer' value={text} onClick={this.handleClick}>
+              <div key={text}>
+                <button name='answer' value={text} onClick={this.handleClick}>
                   {text}
                 </button>
               </div>
@@ -66,7 +64,6 @@ class Flashcard extends React.Component {
         </ul>
         <div>Responses: {responses}</div>
         <div>Your score: {this.state.score}</div>
-        <div>Q index: {this.state.questionIndex}</div>
         <hr />
         {isAnswered === true && <button onClick={this.handleNextQuestion}>Next question</button>}
       </div>
