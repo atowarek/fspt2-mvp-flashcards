@@ -17,7 +17,7 @@ class Navbar extends React.Component {
         </div>
         <div>
           <NavLink exact activeClassName='active-page' to='/game'>
-            <b>Play</b>
+            Play
           </NavLink>
         </div>
         <div>

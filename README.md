@@ -15,9 +15,15 @@ Run `yarn` on root folder to install dependencies related to Express.
 
 ## Database schema
 
+![db schema_without_extension](https://user-images.githubusercontent.com/60450533/83950744-51f18980-a82d-11ea-96b7-65b6e54a1864.png)
+
 ## User flow diagram
 
+![user_flow](https://user-images.githubusercontent.com/60450533/83950741-4bfba880-a82d-11ea-820a-9868bea770ba.png)
+
 ## API routes plan
+
+![api_design](https://user-images.githubusercontent.com/60450533/83950738-4736f480-a82d-11ea-9108-c8f421727f49.png)
 
 ## Notes
 
