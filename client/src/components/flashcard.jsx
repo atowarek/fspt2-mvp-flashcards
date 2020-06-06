@@ -13,21 +13,16 @@ class Flashcard extends React.Component {
       isFlipped: false,
     }
   }
-
   handleClick = event => {
     event.preventDefault()
     const { addScore, correctAnswer } = this.props
     const answer = event.target.value
     const isCorrect = answer === correctAnswer
 
-    if (isCorrect) {
-      console.log(`${answer}: ${correctAnswer}`)
+    if (isCorrect)
       this.setState({
         isCorrect: true,
       })
-    } else {
-      console.log(`Incorrect ${answer}, correct: ${correctAnswer}`)
-    }
     this.setState({
       isAnswered: true,
     })
@@ -65,10 +60,12 @@ class Flashcard extends React.Component {
             <h3>Not really. Flip the card!</h3>
           )}
         </Alert>
+
         <div className='flashcard-container'>
-          <div className={`card ${isFlipped ? 'flip' : ''}`} onClick={this.handleFlip} disabled={!isAnswered}>
+          <button className={`card ${isFlipped ? 'flip' : ''}`} onClick={this.handleFlip} disabled={!isAnswered}>
             {isFlipped ? <div className='back'>{correctAnswer}</div> : <div className='front'>{question}</div>}
-          </div>
+          </button>
+
           <div className='choices-container'>
             {choices.map(text => {
               return (

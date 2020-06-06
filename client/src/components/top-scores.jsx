@@ -2,12 +2,9 @@ import React from 'react'
 import { Table } from 'reactstrap'
 
 class TopScores extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      games: [],
-      error: false,
-    }
+  state = {
+    games: [],
+    error: false,
   }
   componentDidMount() {
     this.getScores()
@@ -17,7 +14,6 @@ class TopScores extends React.Component {
       .then(response => response.json())
       .then(response => {
         this.setState({ games: response })
-        console.log(response)
       })
       .catch(err => {
         this.setState({ error: true })

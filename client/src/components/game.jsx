@@ -12,7 +12,6 @@ class Game extends React.Component {
     error: false,
     scoreSubmitted: false,
   }
-
   handleChange = event => {
     event.preventDefault()
     this.setState({
@@ -106,12 +105,13 @@ class Game extends React.Component {
                   value={this.state.user}
                   onChange={this.handleChange}
                   placeholder='name, nickname, alias...'
-                  required
                 />
                 <hr />
-                <Button className='btn btn-success' onClick={this.handleSubmit}>
-                  Click here!
-                </Button>
+                {!this.state.scoreSubmitted && (
+                  <Button className='btn btn-success' onClick={this.handleSubmit} disabled={!this.state.user}>
+                    Click here!
+                  </Button>
+                )}
               </form>
             </p>
             <hr />

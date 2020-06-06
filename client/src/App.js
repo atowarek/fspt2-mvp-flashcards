@@ -11,22 +11,17 @@ import About from './components/about-page'
 import { Alert } from 'reactstrap'
 
 class App extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      path: '/',
-      cards: [],
-      categories: [],
-      amount: 0,
-      currentQuestion: '',
-      questionIndex: 0,
-      error: false,
-      gameOver: false,
-      loaded: false,
-    }
+  state = {
+    path: '/',
+    cards: [],
+    categories: [],
+    amount: 0,
+    currentQuestion: '',
+    questionIndex: 0,
+    error: false,
+    gameOver: false,
+    loaded: false,
   }
-
   componentDidMount() {
     this.getCategories()
   }
@@ -39,15 +34,12 @@ class App extends React.Component {
           throw Error()
         }
         this.setState({ categories: response })
-        //console.log(response)
       })
       .catch(err => {
         this.setState({ error: true })
       })
       .finally(() => {
-        this.setState({
-          loaded: true,
-        })
+        this.setState({ loaded: true })
       })
   }
 
@@ -68,7 +60,6 @@ class App extends React.Component {
             choices: choices.sort(() => Math.random() - 0.5),
           }
         })
-        //console.log(cardsTrivia)
         this.setState({
           currentQuestion: cardsTrivia[this.state.questionIndex].id,
           cards: cardsTrivia,
@@ -79,11 +70,7 @@ class App extends React.Component {
         this.setState({ error: true })
       })
       .finally(() => {
-        setTimeout(() => {
-          this.setState({
-            loaded: true,
-          })
-        }, 1000)
+        this.setState({ loaded: true })
       })
   }
 
@@ -95,9 +82,7 @@ class App extends React.Component {
         currentQuestion: this.state.cards[newIndex].id,
       })
     } else {
-      this.setState({
-        gameOver: true,
-      })
+      this.setState({ gameOver: true })
     }
   }
 

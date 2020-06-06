@@ -49,6 +49,7 @@ h5 {
 .card {
   font-family: 'Open Sans', sans-serif;
   font-size: 20px;
+  color: black;
   min-height: 50vh;
   width: 20%;
   justify-content: center;
