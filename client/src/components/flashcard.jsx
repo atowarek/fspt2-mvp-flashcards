@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'reactstrap'
+import { Button, Alert } from 'reactstrap'
 
 class Flashcard extends React.Component {
   constructor(props) {
@@ -9,7 +9,6 @@ class Flashcard extends React.Component {
       score: 0,
       currentQuestion: '',
       isAnswered: false,
-      responses: 0,
       isCorrect: false,
       isFlipped: false,
     }
@@ -30,7 +29,6 @@ class Flashcard extends React.Component {
       console.log(`Incorrect ${answer}, correct: ${correctAnswer}`)
     }
     this.setState({
-      responses: this.state.responses + 1,
       isAnswered: true,
     })
     addScore(isCorrect)
@@ -54,33 +52,46 @@ class Flashcard extends React.Component {
 
   render() {
     const { question, choices, correctAnswer } = this.props
-    const { isAnswered, isFlipped } = this.state
+    const { isAnswered, isFlipped, isCorrect } = this.state
 
     return (
-      <div className='flashcard-container'>
-        <div className={`card ${isFlipped ? 'flip' : ''}`} onClick={this.handleFlip}>
-          {isFlipped ? <div className='back'>{correctAnswer}</div> : <div className='front'>{question}</div>}
+      <>
+        <Alert color='primary'>
+          {!isAnswered ? (
+            <h3>Click the correct answer</h3>
+          ) : isCorrect ? (
+            <h3>That is correct! You get 1 point!</h3>
+          ) : (
+            <h3>Not really. Flip the card!</h3>
+          )}
+        </Alert>
+        <div className='flashcard-container'>
+          <div className={`card ${isFlipped ? 'flip' : ''}`} onClick={this.handleFlip} disabled={!isAnswered}>
+            {isFlipped ? <div className='back'>{correctAnswer}</div> : <div className='front'>{question}</div>}
+          </div>
+          <div className='choices-container'>
+            {choices.map(text => {
+              return (
+                <div key={text}>
+                  <Button
+                    outline
+                    color='secondary'
+                    size='lg'
+                    name='answer'
+                    value={text}
+                    onClick={this.handleClick}
+                    disabled={isAnswered}>
+                    {text}
+                  </Button>
+                </div>
+              )
+            })}
+            <Button color='primary' size='lg' onClick={this.handleNextQuestion} disabled={!isAnswered}>
+              Next question
+            </Button>
+          </div>
         </div>
-        <ul>
-          {choices.map(text => {
-            return (
-              <div key={text}>
-                <Button
-                  outline
-                  color='secondary'
-                  name='answer'
-                  value={text}
-                  onClick={this.handleClick}
-                  disabled={isAnswered}>
-                  {text}
-                </Button>
-              </div>
-            )
-          })}
-        </ul>
-        <br />
-        <div>{isAnswered === true && <button onClick={this.handleNextQuestion}>Next question</button>}</div>
-      </div>
+      </>
     )
   }
 }

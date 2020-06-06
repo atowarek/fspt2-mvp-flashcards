@@ -1,7 +1,16 @@
 .App {
-  font-family: sans-serif;
   text-align: center;
-  margin: 30px auto;
+  margin: 20px 20px;
+}
+.body {
+  font-family: 'Open Sans', sans-serif;
+}
+.h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Balsamiq Sans', cursive;
 }
 
 .active-page {
@@ -16,11 +25,30 @@
   border-bottom: 1px solid lightblue;
   height: 50px;
   width: 100%;
-  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.choices-container {
+  display: grid;
+  justify-items: left;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 150px;
+  column-gap: 15px;
+  row-gap: 20px;
+}
+
+.flashcard-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
 }
 
 .card {
-  font-size: 28px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
   min-height: 50vh;
   width: 20%;
   justify-content: center;
@@ -46,19 +74,13 @@
   transform: rotateY(180deg);
 }
 
-.flashcard-container {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 50px;
-}
-
 .container {
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
   margin: 50px auto;
-  min-height: 60vh;
+  min-height: 50vh;
   width: 40%;
 }
 .img {
@@ -97,4 +119,8 @@
   display: flex;
   flex-direction: column;
   margin: 0.5rem;
+}
+.about {
+  margin: 30px auto;
+  width: 60%;
 }

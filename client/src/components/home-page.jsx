@@ -5,7 +5,7 @@ import dice from '../dice.jpg'
 const HomePage = () => {
   return (
     <div className='container'>
-      <img src={dice}></img>
+      <img src={dice} alt='dice'></img>
       <Link to='/game' className='btn btn-primary'>
         Want to play?
       </Link>

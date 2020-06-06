@@ -8,6 +8,7 @@ import TopScores from './components/top-scores'
 import Game from './components/game'
 import Navbar from './components/navbar'
 import About from './components/about-page'
+import { Alert } from 'reactstrap'
 
 class App extends React.Component {
   constructor(props) {
@@ -18,10 +19,11 @@ class App extends React.Component {
       cards: [],
       categories: [],
       amount: 0,
-      error: false, // remember to catch!
       currentQuestion: '',
       questionIndex: 0,
+      error: false,
       gameOver: false,
+      loaded: false,
     }
   }
 
@@ -33,11 +35,19 @@ class App extends React.Component {
     fetch('http://localhost:5000/api/categories')
       .then(response => response.json())
       .then(response => {
+        if (response.error) {
+          throw Error()
+        }
         this.setState({ categories: response })
         //console.log(response)
       })
       .catch(err => {
         this.setState({ error: true })
+      })
+      .finally(() => {
+        this.setState({
+          loaded: true,
+        })
       })
   }
 
@@ -45,6 +55,9 @@ class App extends React.Component {
     fetch(`https://opentdb.com/api.php?amount=${amount}&category=${categories}&difficulty=easy&type=multiple`)
       .then(response => response.json())
       .then(response => {
+        if (response.error) {
+          throw Error()
+        }
         const cardsTrivia = response.results.map(card => {
           const correctAnswer = he.decode(card.correct_answer)
           const choices = [...card.incorrect_answers.map(element => he.decode(element)), correctAnswer]
@@ -65,6 +78,13 @@ class App extends React.Component {
       .catch(err => {
         this.setState({ error: true })
       })
+      .finally(() => {
+        setTimeout(() => {
+          this.setState({
+            loaded: true,
+          })
+        }, 1000)
+      })
   }
 
   handleNextQuestion = () => {
@@ -82,9 +102,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { cards, categories, amount, currentQuestion, questionIndex, gameOver } = this.state
+    const { cards, categories, amount, currentQuestion, questionIndex, gameOver, error, loaded } = this.state
     return (
       <div className='App'>
+        {!loaded && <p>Loading...</p>}
+        {error && <Alert color='danger'>Sorry, there was an error!</Alert>}
         <Router>
           <Navbar />
           <Switch>

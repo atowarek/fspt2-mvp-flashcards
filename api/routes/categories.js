@@ -1,5 +1,4 @@
 const express = require('express')
-//const db = require('../lib/db')
 const routes = express.Router()
 const fetch = require('node-fetch')
 
@@ -14,7 +13,6 @@ routes.get('/', (req, res) => {
         }
       })
       res.send(parsedData)
-      // res.send(response)
     })
 })
 

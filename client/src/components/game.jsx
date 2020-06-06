@@ -1,7 +1,7 @@
 import React from 'react'
 import Flashcard from './flashcard'
 import Form from './form'
-import { Alert } from 'reactstrap'
+import { Alert, Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
 
 class Game extends React.Component {
@@ -9,7 +9,8 @@ class Game extends React.Component {
     score: 0,
     user: '',
     games: [],
-    path: '/',
+    error: false,
+    scoreSubmitted: false,
   }
 
   handleChange = event => {
@@ -32,7 +33,7 @@ class Game extends React.Component {
     await this.handleAddScore()
     this.saveScore()
     this.setState({
-      path: '/topscores',
+      scoreSubmitted: true,
     })
   }
 
@@ -49,6 +50,9 @@ class Game extends React.Component {
     })
       .then(response => response.json())
       .then(response => {
+        if (response.error) {
+          throw Error()
+        }
         this.setState({ games: response })
       })
       .catch(() => {
@@ -72,6 +76,7 @@ class Game extends React.Component {
 
     return (
       <div>
+        {this.state.error && <Alert color='danger'>Sorry, there was an error!</Alert>}
         <Form categories={categories} onDisplayCards={onDisplayCards} />
         {gameOver === false &&
           currentCard.map(card => {
@@ -91,28 +96,29 @@ class Game extends React.Component {
           })}
         {gameOver === true && (
           <Alert color='success' align-items='center'>
-            <h4 className='alert-heading'>Well done!</h4>
+            <h3 className='alert-heading'>Well done!</h3>
             <p>
               You did great! <br />
               Write your name (or nickname) and become one of your TOP PLAYERS!
               <form onSubmit={this.handleSubmit}>
                 <input
-                  required //required not working?!
                   name='user'
                   value={this.state.user}
                   onChange={this.handleChange}
                   placeholder='name, nickname, alias...'
+                  required
                 />
-                <br />
-                <Link exact to='/topscores' className='btn btn-success' onClick={this.handleSubmit}>
+                <hr />
+                <Button className='btn btn-success' onClick={this.handleSubmit}>
                   Click here!
-                </Link>
+                </Button>
               </form>
             </p>
             <hr />
             <p className='mb-0'> Your final score is {this.state.score}</p>
           </Alert>
         )}
+        {this.state.scoreSubmitted && <Link to='/topscores'>Great! Now check the TOP PLAYERS</Link>}
       </div>
     )
   }

@@ -27,7 +27,7 @@ class TopScores extends React.Component {
   render() {
     return (
       <div className='scores-container'>
-        <h1>Our top players!</h1>
+        <h2>Our top players!</h2>
         <Table hover>
           <thead>
             <tr>
