@@ -18,11 +18,26 @@ con.connect(function (err) {
   if (err) throw err
   console.log('Connected!')
 
-  let sql =
-    'DROP TABLE if exists games; CREATE TABLE games(gameId INT NOT NULL AUTO_INCREMENT, score INT NOT NULL, user VARCHAR(255), categoryId INT, PRIMARY KEY (gameId));'
-  con.query(sql, function (err, result) {
+  let createDatabase = 'CREATE DATABASE flashcards;'
+  con.query(createDatabase, function (err, result) {
+    if (err) throw err
+    console.log('Database creation `flashcards` was successful!')
+  })
+
+  let createGames =
+    'DROP TABLE if exists games; CREATE TABLE games(gameId INT NOT NULL AUTO_INCREMENT, score INT NOT NULL, user VARCHAR(255), PRIMARY KEY (gameId));'
+  con.query(createGames, function (err, result) {
     if (err) throw err
     console.log('Table creation `games` was successful!')
+
+    console.log('Closing...')
+  })
+
+  let createCategory =
+    'DROP TABLE if exists category; CREATE TABLE category(id INT NOT NULL AUTO_INCREMENT, name TEXT, PRIMARY KEY (id));'
+  con.query(createCategory, function (err, result) {
+    if (err) throw err
+    console.log('Table creation `category` was successful!')
 
     console.log('Closing...')
   })

@@ -6,6 +6,18 @@ Run `yarn` on root folder to install dependencies related to Express.
 
 `cd client` and run `yarn` install dependencies related to React.
 
+### Database prep
+
+Create `.env` file in project directory and add:
+
+DB_NAME=flashcards
+DB_HOST=localhost
+DB_PASS=YOUR_PASSWORD
+DB_USER=root
+API_PORT=5000
+
+(replace YOUR_PASSWORD with your actual password)
+
 ### Run Your Development Servers
 
 - Run `yarn start` in project directory to start both the Express server on port 5000 and client server in development mode with hot reloading in port 3000.
