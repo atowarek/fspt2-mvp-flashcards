@@ -52,6 +52,8 @@ class App extends React.Component {
         if (response.error) {
           throw Error()
         }
+
+        // abstract the "parsing" part of this function to another one will make the code more readable
         const cardsTrivia = response.results.map(card => {
           const correctAnswer = he.decode(card.correct_answer)
           const choices = [...card.incorrect_answers.map(element => he.decode(element)), correctAnswer]
