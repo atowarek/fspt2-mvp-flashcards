@@ -93,6 +93,7 @@ class Game extends React.Component {
               />
             )
           })}
+          {/* this will be better in a separated component */}
         {gameOver === true && (
           <Alert color='success' align-items='center'>
             <h3 className='alert-heading'>Well done!</h3>
