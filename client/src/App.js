@@ -33,6 +33,7 @@ class App extends React.Component {
         if (response.error) {
           throw Error()
         }
+        // if you had an error first and then retry for xyz reason, you will still show the error, so reseting the error here might be userful
         this.setState({ categories: response })
       })
       .catch(err => {
@@ -44,6 +45,7 @@ class App extends React.Component {
   }
 
   handleDisplayCards = (categories, amount) => {
+    // my recommendation would be to abstract this from your component (see my PR comment)
     fetch(`https://opentdb.com/api.php?amount=${amount}&category=${categories}&difficulty=easy&type=multiple`)
       .then(response => response.json())
       .then(response => {
@@ -57,9 +59,11 @@ class App extends React.Component {
             id: uuidv4(),
             question: he.decode(card.question),
             correctAnswer,
+            // interesting so the order is random too
             choices: choices.sort(() => Math.random() - 0.5),
           }
         })
+        // remember if you depend on the previous state to use the function type setState
         this.setState({
           currentQuestion: cardsTrivia[this.state.questionIndex].id,
           cards: cardsTrivia,
