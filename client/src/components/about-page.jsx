@@ -10,14 +10,18 @@ const About = props => {
         <p className='lead'>
           This game-based MVP was built to make learning fun!
           <br />
-          You can choose up to 50 questions from one of <b>24 available categories</b> (from 'General knowledge' to
-          'Cartoon & Animations').
+          You can choose up to 50 questions from one of
+          <b> 24 available categories</b>
           <br />
-          For every correct answer you get <b>1 point</b>. <br />
+          (from 'General knowledge' to 'Cartoon & Animations').
+          <p>
+            For every correct answer you get <b>1 point</b>.
+          </p>
         </p>
         <hr />
         <p className='lead'>
-          If you answer incorrectly, don't forget to <b>FLIP THE CARD</b>, to get the correct answer!
+          If you answer incorrectly, don't forget to <b>FLIP THE CARD</b>, to
+          get the correct answer!
           <br />
           Have fun!
         </p>

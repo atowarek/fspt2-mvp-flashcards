@@ -1,6 +1,8 @@
 .App {
+  justify-content: center;
   text-align: center;
-  margin: 20px 20px;
+  width: 100vw;
+  height: 90vh;
 }
 .body {
   font-family: 'Open Sans', sans-serif;
@@ -22,6 +24,7 @@ h5 {
   justify-content: space-around;
   align-items: center;
   margin: 50px auto;
+  color: lightyellow;
   border-bottom: 1px solid lightblue;
   height: 50px;
   width: 100%;

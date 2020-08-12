@@ -10,11 +10,13 @@ Run `yarn` on root folder to install dependencies related to Express.
 
 Create `.env` file in project directory and add:
 
+```
 DB_NAME=flashcards
 DB_HOST=localhost
 DB_PASS=YOUR_PASSWORD
 DB_USER=root
 API_PORT=5000
+```
 
 (replace YOUR_PASSWORD with your actual password)
 
