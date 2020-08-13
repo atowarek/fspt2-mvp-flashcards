@@ -4,7 +4,7 @@ This is my first MVP project, created in a one-week sprint while studying at Cod
 
 The app is called ‘My flashcards’ and it is an e-learning quiz game built using open Trivia API.
 
-Check out the deployed app on Heroku: 
+Check out the deployed app on Heroku:
 
 ## Technologies
 
@@ -33,15 +33,15 @@ DB_NAME=flashcards
 DB_HOST=localhost
 DB_PASS=YOUR_PASSWORD
 DB_USER=root
-API_PORT=5000
+PORT=5000
 ```
 
 (replace YOUR_PASSWORD with your actual password)
 
 ### Run Your Development Servers
 
-- Run `yarn start` in project directory to start both the Express server on port 5000 and client server in development mode with hot reloading in port 3000.
-- Client is configured so all API calls will be proxied to port 5000 for a smoother development experience. Yay!
+- Run `yarn dev` in project directory to start both the Express server on port 5000 and client server in development mode with hot reloading in port 3000.
+- Client is configured so all API calls will be proxied to port 5000 for a smoother development experience.
 - You can test your client app in `http://localhost:3000`
 - You can test your API in `http://localhost:5000/api`
 

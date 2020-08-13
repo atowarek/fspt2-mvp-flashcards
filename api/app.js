@@ -20,6 +20,6 @@ app.get('/api', (req, res) => {
   })
 })
 
-app.listen(process.env.API_PORT, () => {
-  console.log(`Starting server in PORT ${process.env.API_PORT}`)
+app.listen(process.env.PORT, () => {
+  console.log(`Starting server in PORT ${process.env.PORT}`)
 })
