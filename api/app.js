@@ -17,14 +17,10 @@ app.use(express.static(clientPath))
 app.use('/api/games', apiGamesRoutes)
 app.use('/api/categories', apiTriviaCategoryRoutes)
 
-// app.get('/api', (req, res) => {
-//   res.send({
-//     message: 'hello',
-//   })
-// })
-
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(clientPath, 'index.html'))
+app.get('/api', (req, res) => {
+  res.send({
+    message: 'hola',
+  })
 })
 
 app.listen(process.env.PORT, () => {
