@@ -10,7 +10,7 @@ class TopScores extends React.Component {
     this.getScores()
   }
   getScores = () => {
-    fetch('http://localhost:5000/api/games')
+    fetch('/api/games')
       .then(response => response.json())
       .then(response => {
         this.setState({ games: response })

@@ -37,7 +37,7 @@ class Game extends React.Component {
   }
 
   saveScore = () => {
-    fetch(`http://localhost:5000/api/games`, {
+    fetch(`/api/games`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -75,7 +75,9 @@ class Game extends React.Component {
 
     return (
       <div>
-        {this.state.error && <Alert color='danger'>Sorry, there was an error!</Alert>}
+        {this.state.error && (
+          <Alert color='danger'>Sorry, there was an error!</Alert>
+        )}
         <Form categories={categories} onDisplayCards={onDisplayCards} />
         {gameOver === false &&
           currentCard.map(card => {
@@ -108,7 +110,10 @@ class Game extends React.Component {
                 />
                 <hr />
                 {!this.state.scoreSubmitted && (
-                  <Button className='btn btn-success' onClick={this.handleSubmit} disabled={!this.state.user}>
+                  <Button
+                    className='btn btn-success'
+                    onClick={this.handleSubmit}
+                    disabled={!this.state.user}>
                     Click here!
                   </Button>
                 )}
@@ -118,7 +123,9 @@ class Game extends React.Component {
             <p className='mb-0'> Your final score is {this.state.score}</p>
           </Alert>
         )}
-        {this.state.scoreSubmitted && <Link to='/topscores'>Great! Now check the TOP PLAYERS</Link>}
+        {this.state.scoreSubmitted && (
+          <Link to='/topscores'>Great! Now check the TOP PLAYERS</Link>
+        )}
       </div>
     )
   }

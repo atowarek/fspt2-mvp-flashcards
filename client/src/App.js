@@ -27,7 +27,7 @@ class App extends React.Component {
   }
 
   getCategories = () => {
-    fetch('http://localhost:5000/api/categories')
+    fetch('/api/categories')
       .then(response => response.json())
       .then(response => {
         if (response.error) {
@@ -44,7 +44,9 @@ class App extends React.Component {
   }
 
   handleDisplayCards = (categories, amount) => {
-    fetch(`https://opentdb.com/api.php?amount=${amount}&category=${categories}&difficulty=easy&type=multiple`)
+    fetch(
+      `https://opentdb.com/api.php?amount=${amount}&category=${categories}&difficulty=easy&type=multiple`
+    )
       .then(response => response.json())
       .then(response => {
         if (response.error) {
@@ -52,7 +54,10 @@ class App extends React.Component {
         }
         const cardsTrivia = response.results.map(card => {
           const correctAnswer = he.decode(card.correct_answer)
-          const choices = [...card.incorrect_answers.map(element => he.decode(element)), correctAnswer]
+          const choices = [
+            ...card.incorrect_answers.map(element => he.decode(element)),
+            correctAnswer,
+          ]
           return {
             id: uuidv4(),
             question: he.decode(card.question),
@@ -87,7 +92,16 @@ class App extends React.Component {
   }
 
   render() {
-    const { cards, categories, amount, currentQuestion, questionIndex, gameOver, error, loaded } = this.state
+    const {
+      cards,
+      categories,
+      amount,
+      currentQuestion,
+      questionIndex,
+      gameOver,
+      error,
+      loaded,
+    } = this.state
     return (
       <div className='App'>
         {!loaded && <p>Loading...</p>}
