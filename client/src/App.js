@@ -27,7 +27,7 @@ class App extends React.Component {
   }
 
   getCategories = () => {
-    fetch('/api/categories')
+    fetch(`/api/categories`)
       .then(response => response.json())
       .then(response => {
         if (response.error) {
