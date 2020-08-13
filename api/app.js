@@ -28,8 +28,8 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(clientPath, 'index.html'))
 })
 
-//app.use(express.static('./client/public/img'))
-app.use(express.static(clientPath))
+app.use(express.static('./client/public/img'))
+//app.use(express.static(clientPath))
 
 app.listen(process.env.PORT, () => {
   console.log(`Starting server in PORT ${process.env.PORT}`)
