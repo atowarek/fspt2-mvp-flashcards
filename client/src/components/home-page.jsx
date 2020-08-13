@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <div className='container'>
       <img src={dice} alt='dice'></img>
-      <Link to='/game' className='btn btn-primary'>
+      <Link to='/game' className='main-btn btn-primary'>
         Want to play?
       </Link>
     </div>

@@ -128,11 +128,11 @@ h5 {
   margin: 30px auto;
   width: 60%;
 }
-.btn {
+.main-btn {
   height: 65px;
   width: 200px;
   text-align: center;
-  line-height: 50px !important;
+  line-height: 60px !important;
   border-radius: 10px;
   margin: 20px auto;
   font-size: 20px !important;
