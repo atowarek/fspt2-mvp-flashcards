@@ -85,7 +85,7 @@ h5 {
   flex-direction: row;
   margin: 50px auto;
   min-height: 50vh;
-  width: 40%;
+  width: 70%;
 }
 .img {
   padding: 40px;
@@ -127,4 +127,13 @@ h5 {
 .about {
   margin: 30px auto;
   width: 60%;
+}
+.btn {
+  height: 65px;
+  width: 200px;
+  text-align: center;
+  line-height: 50px !important;
+  border-radius: 10px;
+  margin: 20px auto;
+  font-size: 20px !important;
 }
