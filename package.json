@@ -26,8 +26,7 @@
     "dev:server": "nodemon ./api/app.js",
     "dev:client": "cd ./client && yarn start",
     "dev": "npm-run-all -l -p dev:server dev:client",
-    "start:server": "node ./api/app.js",
-    "start": "yarn start:server",
+    "start": "node ./api/app.js",
     "build": "yarn && cd ./client && yarn && yarn build",
     "migrate": "node ./server/lib/database.js"
   }
