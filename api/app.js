@@ -23,7 +23,7 @@ app.use('/api/categories', apiTriviaCategoryRoutes)
 //   })
 // })
 
-app.get('/api', function (req, res) {
+app.get('/*', function (req, res) {
   res.sendFile(path.join(clientPath, 'index.html'))
 })
 
