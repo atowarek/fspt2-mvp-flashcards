@@ -1,8 +1,9 @@
 const express = require('express')
 const db = require('../lib/db')
 const routes = express.Router()
+const fetch = require('node-fetch')
 
-routes.get('/', (req, res) => {
+routes.get('/games', (req, res) => {
   db(`SELECT * FROM games ORDER BY score DESC`)
     .then(results => {
       if (results.error) {
@@ -13,7 +14,7 @@ routes.get('/', (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
-routes.get('/:gameId', (req, res) => {
+routes.get('/games/:gameId', (req, res) => {
   const { gameId } = req.params
   db(`SELECT * FROM games WHERE gameId=${gameId};`)
     .then(results => {
@@ -25,7 +26,7 @@ routes.get('/:gameId', (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
-routes.post('/', (req, res) => {
+routes.post('/games', (req, res) => {
   const { score, user } = req.body
 
   db(`INSERT INTO games (score, user) VALUES('${score}', '${user}');`)
@@ -39,7 +40,7 @@ routes.post('/', (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
-routes.delete('/:gameId', (req, res) => {
+routes.delete('/games/:gameId', (req, res) => {
   const { gameId } = req.params
   db(`DELETE FROM games WHERE gameId=${gameId};`)
     .then(results => {
@@ -50,6 +51,20 @@ routes.delete('/:gameId', (req, res) => {
       return res.status(404).send({ message: 'No game found' })
     })
     .catch(err => res.status(500).send(err))
+})
+
+routes.get('/categories', (req, res) => {
+  fetch('https://opentdb.com/api_category.php')
+    .then(response => response.json())
+    .then(response => {
+      const parsedData = response.trivia_categories.map(({ id, name }) => {
+        return {
+          id,
+          name,
+        }
+      })
+      res.send(parsedData)
+    })
 })
 
 module.exports = routes
