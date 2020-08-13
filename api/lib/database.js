@@ -18,10 +18,16 @@ con.connect(function (err) {
   if (err) throw err
   console.log('Connected!')
 
-  let createDatabase = 'CREATE DATABASE flashcards;'
+  let createDatabase = `CREATE DATABASE ${DB_NAME};`
   con.query(createDatabase, function (err, result) {
     if (err) throw err
     console.log('Database creation `flashcards` was successful!')
+  })
+
+  let useDatabase = `USE ${DB_NAME};`
+  con.query(useDatabase, function (err, result) {
+    if (err) throw err
+    console.log('Connection to `flashcards` database was successful!')
   })
 
   let createGames =
