@@ -1,10 +1,12 @@
 ## My flashcards
 
-This is my first MVP project, created in a one-week sprint while studying at CodeOp Bootcamp in Barcelona.
+This is my first **MVP project**, created in a one-week sprint while studying at CodeOp Bootcamp in Barcelona.
 
-The app is called ‘My flashcards’ and it is an e-learning quiz game built using open Trivia API.
+The app is called **‘My flashcards’** and it is an e-learning quiz game built using open Trivia API.
 
-Check out the deployed app on Heroku:
+Check out the deployed app on Heroku: [My flashcards](https://mvp-flashcards.herokuapp.com)
+
+![homepage](/client/public/homepage.jpg)
 
 ## Technologies
 
@@ -12,7 +14,7 @@ The main technologies used were:
 
 Front-end: React.js, JavaScript ES6, HTML, CSS, Bootstrap & Reactstrap.
 
-Back-end: Node.js, Express.js & MySQL.
+Back-end: Node.js & Express.js. MySQL for databases.
 
 Deployment: Heroku.
 
