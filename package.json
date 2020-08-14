@@ -28,6 +28,6 @@
     "dev": "npm-run-all -l -p dev:server dev:client",
     "start": "node ./api/app.js",
     "build": "yarn && cd ./client && yarn && yarn build",
-    "migrate": "node ./server/lib/database.js"
+    "migrate": "node ./api/lib/database.js"
   }
 }
