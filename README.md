@@ -2,7 +2,7 @@
 
 This is my first **MVP project**, created in a one-week sprint while studying at CodeOp Bootcamp in Barcelona.
 
-The app is called **‘My flashcards’** and it is an e-learning quiz game built using open Trivia API.
+The app is called **‘My flashcards’** and it's an educational quiz game built using open Trivia API.
 
 Check out the deployed app on Heroku: [My flashcards](https://mvp-flashcards.herokuapp.com)
 
